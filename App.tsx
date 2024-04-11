@@ -1,7 +1,11 @@
 import 'react-native-gesture-handler';
-import { StyleSheet, Text, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Navigation from './navigation';
+import Reactotron from './Reactotron';
+
+if (__DEV__) {
+  Reactotron.connect();
+}
 
 export default function App() {
   return (
@@ -10,12 +14,3 @@ export default function App() {
     </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
