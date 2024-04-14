@@ -4,7 +4,7 @@ import CrypSpacing from "../common/CrypSpacing"
 import { TouchableWithoutFeedback } from "react-native-gesture-handler"
 import { useNavigation } from "@react-navigation/native"
 import { useEffect, useState } from "react";
-import useWebSocket from "../../hooks/useWebSocket"
+import useLivePrice from "../../hooks/useLivePrice"
 import { formatUSD } from "../../utils/CurrencyUtil"
 
 type Props = {
@@ -12,14 +12,15 @@ type Props = {
     pair: string;
     name: string;
   };
+  percentage: string;
 }
 
 const DELAY = 1000;
 
 function LiveCoinSummaryRow(props: Props) {
-  const { coin } = props;
+  const { coin, percentage } = props;
   const navigation = useNavigation();
-  const { livePrice } = useWebSocket(coin.pair);
+  const { livePrice } = useLivePrice(coin.pair.split('/').join(''));
 
   const [price, setPrice] = useState<string>();
 
@@ -36,7 +37,7 @@ function LiveCoinSummaryRow(props: Props) {
   }, [livePrice]);
 
   const navigateToChartScreen = () => {
-    navigation.navigate('Chart');
+    navigation.navigate('Chart', { coin });
   }
 
   return (
@@ -53,7 +54,7 @@ function LiveCoinSummaryRow(props: Props) {
         </View>
         <View style={styles.price}>
           <CrypText color="brandRed" type="bodyXL">
-            -0.55%
+            {Number(percentage).toFixed(2)}%
           </CrypText>
           <CrypText color="brandWhite" type="bodyM">
             {formatUSD(price)}

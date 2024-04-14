@@ -1,7 +1,8 @@
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet, ActivityIndicator } from "react-native"
 import CrypColors from "../../../components/common/CrypColors"
 import CrypSpacing from "../../../components/common/CrypSpacing"
 import LiveCoinSummaryRow from "../../../components/LandingScreen/LiveCoinSummaryRow"
+import { useEffect, useState } from "react";
 
 const coins = [
   {
@@ -27,15 +28,36 @@ const coins = [
 ];
 
 function MarketTab() {
-  const renderSearchBar = () => {
-    return <></>
+  const [priceChanges, setPriceChanges] = useState([]);
+
+  useEffect(() => {
+    fetchPriceChange();
+  }, [])
+
+  const fetchPriceChange = () => {
+    const symbols = coins.map(coin => coin.pair.split('/').join('').toLocaleUpperCase());
+    const symbolsParam = encodeURIComponent(JSON.stringify(symbols));
+    
+    fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=${symbolsParam}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(res => {
+        setPriceChanges(res);
+      })
   }
 
   return (
     <View style={styles.container}>
-      {renderSearchBar()}
-      {coins.map(coin => (
-        <LiveCoinSummaryRow coin={coin} />
+      {coins.length <= 0 && <ActivityIndicator size={'large'} />}
+      {coins.map((coin, index) => (
+        <LiveCoinSummaryRow
+          coin={coin}
+          percentage={priceChanges?.[index]?.priceChangePercent ?? '-'}
+        />
       ))}
     </View>
   )

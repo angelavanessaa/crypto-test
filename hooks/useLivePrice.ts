@@ -1,15 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useWebSocket = (coinPair: string) => {
+const useLivePrice = (coinPair: string) => {
   const [livePrice, setLivePrice] = useState(null);
 
   useEffect(() => {
     const symbol = coinPair.split('/').join('').toLocaleLowerCase();
     const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol}@trade`);
-
-    // ws.onopen = () => {
-    //   console.tron('connected');
-    // };
 
     ws.onmessage = e => {
       const message = JSON.parse(e?.data);
@@ -17,13 +13,13 @@ const useWebSocket = (coinPair: string) => {
       setLivePrice(String(message.p));
     };
 
-    // ws.onerror = e => {
-    //   console.tron(e);
-    // };
+    ws.onerror = e => {
+      console.tron(e);
+    };
 
-    // ws.onclose = e => {
-    //   console.tron(e.code, e.reason);
-    // };
+    ws.onclose = e => {
+      console.tron(e.code, e.reason);
+    };
 
     return () => {
       ws.close();
@@ -33,4 +29,4 @@ const useWebSocket = (coinPair: string) => {
   return { livePrice };
 };
 
-export default useWebSocket;
+export default useLivePrice;

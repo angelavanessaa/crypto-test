@@ -1,7 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeTab from './HomeTab/HomeTab';
 import MarketTab from './MarketTab/MarketTab';
-import PortfolioTab from './PortfolioTab/PortfolioTab';
 import CrypColors from '../../components/common/CrypColors';
 import { View } from 'react-native';
 
@@ -41,7 +40,6 @@ export default function LandingScreen() {
         options={tabOptions}
       />
       <Tab.Screen name="Market" component={MarketTab} options={tabOptions} />
-      <Tab.Screen name="Portfolio" component={PortfolioTab} />
     </Tab.Navigator>
   );
 }

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import { View, StyleSheet, TouchableOpacity } from "react-native"
 import CrypColors from "../../../components/common/CrypColors"
 import CrypText from "../../../components/common/CrypText"
 import CrypSpacing from "../../../components/common/CrypSpacing"
