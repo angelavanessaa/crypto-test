@@ -9,8 +9,8 @@ import Toast from 'react-native-toast-message';
 export const { width } = Dimensions.get("window");
 
 // https://testnet.binance.vision/
-const API_KEY = 'zybADLxsb94wdaIW3cStiaCpYD4fayK9syPqGz3WUSChyaztr2u3QPpybDPcgFcI';
-const SECRET_KEY = 'gIiPP5ypIXO1dWDUxQAknVVF4LP7BpvRKuF2xQ4OgFPT4vUx9HDepaectDtUlK1N';
+const API_KEY = process.env.BINANCE_API_KEY;
+const SECRET_KEY = process.env.BINANCE_SECRET_KEY;
 
 function OrderInput(props) {
   const { coin } = props;
