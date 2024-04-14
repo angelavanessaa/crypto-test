@@ -57,7 +57,7 @@ function LiveCoinSummaryRow(props: Props) {
             {Number(percentage).toFixed(2)}%
           </CrypText>
           <CrypText color="brandWhite" type="bodyM">
-            {formatUSD(price)}
+            {Number(price).toFixed(2)}
           </CrypText>
         </View>
       </View>

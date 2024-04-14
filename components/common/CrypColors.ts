@@ -19,8 +19,9 @@ export default {
    * #FFFFFF
    */
   brandWhite: '#FFF7F1',
-
-  brandGreen: '#AFD198',
+  /**
+   * #FA7070
+   */
   brandRed: '#FA7070'
 
 };

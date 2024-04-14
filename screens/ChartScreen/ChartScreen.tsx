@@ -40,8 +40,8 @@ function ChartScreen({ route }) {
       <CrypText color="brandWhite" type="labelM">
         {coin.name}
       </CrypText>
-      <CrypText color="brandWhite" type="h1">
-        {formatUSD(price)}
+      <CrypText color="brandWhite" type="h1" style={styles.price}>
+        {parseFloat(price).toFixed(2)}
       </CrypText>
       <CandleStickChart />
       <View style={styles.btnContainer}>
@@ -94,6 +94,9 @@ const styles = StyleSheet.create({
   },
   sellButton: {
     backgroundColor: CrypColors.brandRed,
+  },
+  price: {
+    marginBottom: CrypSpacing.spacing10
   }
 })
 

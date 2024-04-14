@@ -4,6 +4,7 @@ import MarketTab from './MarketTab/MarketTab';
 import CrypColors from '../../components/common/CrypColors';
 import { View } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import CrypText from '../../components/common/CrypText';
 
 const Tab = createBottomTabNavigator();
 const tabOptions = {

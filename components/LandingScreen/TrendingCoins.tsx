@@ -45,7 +45,7 @@ function TrendingCoins() {
               <CrypText color="brandWhite" type="bodyL">
                 {parseFloat(coin.item.data.price).toFixed(2)}
               </CrypText>
-              <CrypText color={percentage < 0 ? "brandRed" : "brandGreen"} type="bodyL">
+              <CrypText color={percentage < 0 ? "brandRed" : "brandTeal"} type="bodyL">
                 {percentage}%
               </CrypText>
             </View>

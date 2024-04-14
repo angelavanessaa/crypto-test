@@ -3,8 +3,10 @@ import CrypColors from "../../../components/common/CrypColors"
 import CrypText from "../../../components/common/CrypText"
 import CrypSpacing from "../../../components/common/CrypSpacing"
 import TrendingCoins from "../../../components/LandingScreen/TrendingCoins"
+import { useNavigation } from "@react-navigation/native"
 
 function HomeTab() {
+  const navigation = useNavigation();
 
   const renderProfitSummary = () => {
     return (
@@ -29,6 +31,10 @@ function HomeTab() {
     )
   }
 
+  const navigateToMarket = () => {
+    navigation.navigate('Market');
+  }
+
   return (
     <View style={styles.container}>
       <CrypText color="brandWhite" type="h1">
@@ -39,7 +45,7 @@ function HomeTab() {
         <CrypText color="brandWhite" type="display2">$ 8,612</CrypText>
         <View style={styles.summaryFooter}>
           {renderProfitSummary()}
-          <TouchableOpacity>
+          <TouchableOpacity onPress={navigateToMarket}>
             <View style={styles.primaryButton}>
               <CrypText color="brandWhite" type="bodyM">
                 Trade

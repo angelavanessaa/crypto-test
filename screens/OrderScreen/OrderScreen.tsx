@@ -47,7 +47,7 @@ function OrderScreen({ route }) {
       {buyOrders.length <= 0 && <ActivityIndicator />}
       {buyOrders.sort((a, b) => b - a).map((order, index) => (
         <View key={`buy_${index}`} style={styles.rowContainer}>
-          <CrypText color="brandGreen" type="bodyM">
+          <CrypText color="brandTeal" type="bodyM">
             {order[0]}
           </CrypText>
           <CrypText color="brandWhite" type="bodyM">

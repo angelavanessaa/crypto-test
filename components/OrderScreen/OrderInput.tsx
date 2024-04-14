@@ -145,7 +145,7 @@ function OrderInput(props) {
               {order.side} {order.origQty}
             </CrypText>
           </View>
-          <CrypText color="brandGreen" type="bodyM">
+          <CrypText color="brandTeal" type="bodyM">
             {order.status}
           </CrypText>
         </View>

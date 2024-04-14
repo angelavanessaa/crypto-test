@@ -3,6 +3,7 @@ import CrypColors from "../../../components/common/CrypColors"
 import CrypSpacing from "../../../components/common/CrypSpacing"
 import LiveCoinSummaryRow from "../../../components/LandingScreen/LiveCoinSummaryRow"
 import { useEffect, useState } from "react";
+import CrypText from "../../../components/common/CrypText";
 
 const coins = [
   {
@@ -52,11 +53,19 @@ function MarketTab() {
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <CrypText color="brandGrey" type="labelS">
+          Coin Pair
+        </CrypText>
+        <CrypText color="brandGrey" type="labelS">
+          Price / Movement
+        </CrypText>
+      </View>
       {coins.length <= 0 && <ActivityIndicator size={'large'} />}
       {coins.map((coin, index) => (
         <LiveCoinSummaryRow
           coin={coin}
-          percentage={priceChanges?.[index]?.priceChangePercent ?? '-'}
+          percentage={priceChanges?.[index]?.priceChangePercent ?? 0}
         />
       ))}
     </View>
@@ -69,11 +78,11 @@ const styles = StyleSheet.create({
     backgroundColor: CrypColors.brandDark,
     padding: CrypSpacing.spacing16,
   },
-  rowContainer: {
+  header: {
+    paddingHorizontal: CrypSpacing.spacing12,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: CrypSpacing.spacing4,
-    paddingHorizontal: CrypSpacing.spacing12,
+    paddingVertical: CrypSpacing.spacing8
   }
 })
 
