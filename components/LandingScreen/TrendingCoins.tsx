@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, ActivityIndicator } from "react-native";
 import CrypText from "../common/CrypText";
 import CrypSpacing from "../common/CrypSpacing";
 import { ScrollView } from "react-native-gesture-handler";
@@ -23,6 +23,12 @@ function TrendingCoins() {
         setTrendingCoins(res.coins);
       })
   }
+
+  if (trendingCoins.length <= 0) return (
+    <View style={styles.loadWrapper}>
+      <ActivityIndicator size={'large'} color={'white'} />
+    </View>
+  );
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
@@ -72,6 +78,10 @@ const styles = StyleSheet.create({
     width: '48%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  loadWrapper: {
+    height: 150,
+    justifyContent: 'center'
   }
 })
 

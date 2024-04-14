@@ -3,6 +3,7 @@ import HomeTab from './HomeTab/HomeTab';
 import MarketTab from './MarketTab/MarketTab';
 import CrypColors from '../../components/common/CrypColors';
 import { View } from 'react-native';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 const tabOptions = {
@@ -37,9 +38,20 @@ export default function LandingScreen() {
       <Tab.Screen
         name="Home"
         component={HomeTab}
-        options={tabOptions}
+        options={{
+          ...tabOptions,
+          tabBarIcon: ({ color }) => <FontAwesome size={22} name="home" color={color} />,
+        }}
       />
-      <Tab.Screen name="Market" component={MarketTab} options={tabOptions} />
+      <Tab.Screen
+        name="Market"
+        component={MarketTab}
+        options={tabOptions}
+        options={{
+          ...tabOptions,
+          tabBarIcon: ({ color }) => <FontAwesome size={22} name="line-chart" color={color} />,
+        }}
+      />
     </Tab.Navigator>
   );
 }
